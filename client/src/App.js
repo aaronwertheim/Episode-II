@@ -1,11 +1,19 @@
+import { useEffect } from "react";
 
 
 function App() {
+
+  useEffect(() => {
+    fetch("/movies")
+    .then(response => response.json())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+  },[])
+  
+  
   return (
     <div className="">
-      <header className="text-3xl">
-        Hello World!
-      </header>
+      Hello World!
     </div>
   );
 }

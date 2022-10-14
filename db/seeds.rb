@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+def get_movie_data
+    movies = RestClient.get("https://movie-json-data.herokuapp.com/movies")
+    movies_array = JSON.parse(movies)
+    movies_array.each do |m|
+        Movie.create(
+            name: m["name"]
+        )
+    end     
+end
+
+get_movie_data()
+
+puts 'Seeding Done'
+
