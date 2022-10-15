@@ -4,7 +4,11 @@ def get_movie_data
     movies_array = JSON.parse(movies)
     movies_array.each do |m|
         Movie.create(
-            name: m["name"]
+            name: m["name"],
+            image: m["image"],
+            description: m["description"],
+            director: m["director"][0]["name"],
+            genre: m["genre"],
         )
     end     
 end
