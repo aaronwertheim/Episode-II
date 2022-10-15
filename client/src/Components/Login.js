@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import {MoviesContext} from "../Contexts/MoviesContext";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
+
 function Login({ onLogin }) {
     const [showLogin, setShowLogin] = useState(true);
+    const { movies } = useContext(MoviesContext)
+
     return (
         <>
         {showLogin ? (
@@ -27,6 +31,7 @@ function Login({ onLogin }) {
               </p>
             </>
           )}
+         
           </>
     )
   }
