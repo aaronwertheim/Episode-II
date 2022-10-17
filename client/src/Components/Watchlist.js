@@ -10,10 +10,17 @@ function Watchlist (){
         .then(data => setWatchlistMovies(data))
     }, [])
 
+    function watchlistRemove(id){
+        fetch("/watchlist_movies/"+id, {
+            method: "DELETE"
+        }).then(setWatchlistMovies(watchlistMovies.filter(movie => movie.id !== id)))
+    }
+
     return(
         <div>
             { watchlistMovies.map( watchlistMovie =>{
-                return <div>{ watchlistMovie.movie.name }</div>
+                return <div>{ watchlistMovie.movie.name } 
+                <button onClick={ () => watchlistRemove(watchlistMovie.id) } >Remove</button></div>
             })}
         </div>
     )

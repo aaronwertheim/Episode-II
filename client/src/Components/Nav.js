@@ -11,6 +11,7 @@ function Nav({setUser}) {
     }
     return (
         <nav>
+            <Link to="/">Home</Link>
             <Link to="/watchlist">Watchlist</Link>
             <button onClick={handleLogoutClick}>
                 Logout
