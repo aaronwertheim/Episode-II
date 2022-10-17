@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Nav({setUser}) {
 
     function handleLogoutClick() {
@@ -9,6 +11,7 @@ function Nav({setUser}) {
     }
     return (
         <nav>
+            <Link to="/watchlist">Watchlist</Link>
             <button onClick={handleLogoutClick}>
                 Logout
             </button>

@@ -4,6 +4,7 @@ import { MoviesContext } from "../Contexts/MoviesContext";
 import Login from "./Login";
 import Home from "./Home";
 import Nav from "./Nav";
+import Watchlist from "./Watchlist";
 
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
         <Nav setUser={setUser} />
         <MoviesContext.Provider value={{movies, setMovies}}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home user={ user } />} />
+            <Route path="/watchlist" element={ <Watchlist /> } />
           </Routes>
         </MoviesContext.Provider>
     </div>
