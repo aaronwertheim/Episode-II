@@ -29,16 +29,30 @@ function App() {
 
   if (!user) return (
       <MoviesContext.Provider value={{movies, setMovies}}>
-        <Login onLogin={setUser} />
+        <Login onLogin={setUser} watchlistSubmit={watchlistSubmit}/>
       </MoviesContext.Provider>
     )
+
+    function watchlistSubmit(id){
+      if (!user) return alert("Please Log in or Sign up")
+      fetch("/watchlist_movies", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: user.id,
+          movie_id: id
+        }),
+      })
+    }
   
   return (
     <div className="">
         <Nav setUser={setUser} />
         <MoviesContext.Provider value={{movies, setMovies}}>
           <Routes>
-            <Route path="/" element={<Home user={ user } />} />
+            <Route path="/" element={<Home user={ user } watchlistSubmit={watchlistSubmit} />} />
             <Route path="/watchlist" element={ <Watchlist /> } />
           </Routes>
         </MoviesContext.Provider>

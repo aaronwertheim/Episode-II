@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
 
-function Login({ onLogin }) {
+function Login({ onLogin, watchlistSubmit }) {
     const [showLogin, setShowLogin] = useState(true);
     const { movies } = useContext(MoviesContext)
 
@@ -15,7 +15,7 @@ function Login({ onLogin }) {
               <LoginForm onLogin={onLogin} />
               <p>
                 Don't have an account? &nbsp;
-                <button color="secondary" onClick={() => setShowLogin(false)}>
+                <button onClick={() => setShowLogin(false)}>
                   Sign Up
                 </button>
               </p>
@@ -25,13 +25,19 @@ function Login({ onLogin }) {
               <SignUpForm onLogin={onLogin} />
               <p>
                 Already have an account? &nbsp;
-                <button color="secondary" onClick={() => setShowLogin(true)}>
+                <button onClick={() => setShowLogin(true)}>
                   Log In
                 </button>
               </p>
             </>
           )}
-         
+          <div>{movies.map(movie => (
+            <div>{movie.name}
+              <button onClick={() => watchlistSubmit(movie.id)} >Add to Watchlist</button>
+            </div>
+            
+            ))}
+          </div>
           </>
     )
   }
