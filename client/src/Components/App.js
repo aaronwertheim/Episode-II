@@ -6,12 +6,14 @@ import Home from "./Home";
 import Nav from "./Nav";
 import Watchlist from "./Watchlist";
 import MovieDetails from "./MovieDetails";
+import ReviewForm from "./ReviewForm";
+import MyReviews from "./MyReviews";
 
 
 function App() {
 
   const [user, setUser] = useState(null);
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -56,6 +58,8 @@ function App() {
             <Route path="/" element={<Home user={ user } watchlistSubmit={watchlistSubmit} />} />
             <Route path="/watchlist" element={ <Watchlist /> } />
             <Route path={"movie-details/:id"} element={ <MovieDetails /> } />
+            <Route path={"review-form/:id"} element={ <ReviewForm user={user} /> } />
+            <Route path={"/my-reviews"} element={ <MyReviews user={user}/> } />
           </Routes>
         </MoviesContext.Provider>
     </div>

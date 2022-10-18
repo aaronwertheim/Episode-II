@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 
 function MovieDetails() {
 
-    const [movie, setMovie] = useState([])
-    const {id} = useParams();
+    const [movie, setMovie] = useState([]);
+    const { id } = useParams();
 
     useEffect(() => {
         fetch(`/movies/${id}`)
@@ -18,6 +18,11 @@ function MovieDetails() {
             <div>{movie.genre?.map(movie => movie + " ")}</div>
             <div>{movie.description}</div>
             <img src={movie.image} />
+            <div>Reviews:
+                {movie.reviews?.map(review => (
+                    <div>Author: {review.author} {review.rating} {review.content}</div>
+                ))}
+            </div>
         </div>
     )
 }
