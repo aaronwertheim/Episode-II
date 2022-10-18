@@ -5,6 +5,7 @@ import Login from "./Login";
 import Home from "./Home";
 import Nav from "./Nav";
 import Watchlist from "./Watchlist";
+import MovieDetails from "./MovieDetails";
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home user={ user } watchlistSubmit={watchlistSubmit} />} />
             <Route path="/watchlist" element={ <Watchlist /> } />
+            <Route path={"movie-details/:id"} element={ <MovieDetails /> } />
           </Routes>
         </MoviesContext.Provider>
     </div>
