@@ -13,6 +13,7 @@ function Nav({setUser}) {
         <nav>
             <Link to="/">Home</Link>
             <Link to="/watchlist">Watchlist</Link>
+            <Link to="/my-reviews">My Reviews</Link>
             <button onClick={handleLogoutClick}>
                 Logout
             </button>
