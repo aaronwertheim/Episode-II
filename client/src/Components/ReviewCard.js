@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 function ReviewCard({review, user}) {
     
     const [votes, setVotes] = useState([])
-    
 
     useEffect(() => {
         fetch('/votes')
@@ -12,7 +11,9 @@ function ReviewCard({review, user}) {
     },[])
     
     function likeReview(rev) {
-        fetch('/votes', {
+        if(!user) return alert("Please Log in or Sign up")
+        else {
+            fetch('/votes', {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -21,7 +22,14 @@ function ReviewCard({review, user}) {
                 user_id: user.id,
                 review_id: rev.id
             }),
-        }).then(setVotes(votes + 1))
+            }).then(r => {
+                if(r.ok){
+                    r.json().then(setVotes(votes + 1))
+                } else {
+                    r.json().then((err) => console.log(err.errors));
+                }
+            })
+        }
     }
 
     return (

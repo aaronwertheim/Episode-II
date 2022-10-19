@@ -20,7 +20,7 @@ function LoginForm({ onLogin }) {
       }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-          r.json().then((user) => onLogin(user)).then(() => navigate("/"));
+          r.json().then((user) => onLogin(user)).then(() => navigate("/home"));
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
