@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import {MoviesContext} from "../Contexts/MoviesContext";
+import { MoviesContext } from "../Contexts/MoviesContext";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
@@ -32,10 +32,9 @@ function Login({ onLogin, watchlistSubmit }) {
             </>
           )}
           <div>{movies.map(movie => (
-            <div>{movie.name}
-              <button onClick={() => watchlistSubmit(movie.id)} >Add to Watchlist</button>
-            </div>
-            
+              <div>{movie.name}
+                <button onClick={() => watchlistSubmit(movie.id)} >Add to Watchlist</button>
+              </div>
             ))}
           </div>
           </>

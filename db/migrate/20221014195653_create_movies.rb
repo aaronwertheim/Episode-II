@@ -5,7 +5,7 @@ class CreateMovies < ActiveRecord::Migration[6.1]
       t.string :image
       t.string :description
       t.string :director
-      t.string :genre, array: true
+      t.string :genre, array: true, default: []
 
       t.timestamps
     end
