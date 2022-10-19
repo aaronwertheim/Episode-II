@@ -27,7 +27,7 @@ function ReviewForm({user}) {
             movie_id: id,
             rating,
             content: reviewContent,
-            author: user.username
+            author: user.username,
           }),
         }).then(() => navigate("/my-reviews"))
       }
