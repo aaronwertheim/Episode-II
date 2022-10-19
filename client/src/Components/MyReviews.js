@@ -4,7 +4,7 @@ function MyReviews({user}) {
 
     const [reviews, setReviews] = useState([]);
     const [showForm, setShowForm] = useState([])
-    const [newContent, setNewContent] = useState("")
+    const [newContent, setNewContent] = useState()
     const [newRating, setNewRating] = useState()
 
     useEffect(() => {
@@ -14,6 +14,7 @@ function MyReviews({user}) {
     },[])
 
     function handleUpdate(review){
+        
         fetch('/reviews/'+review.id, {
             method: "PATCH",
             headers: {
@@ -23,7 +24,13 @@ function MyReviews({user}) {
                 content: newContent,
                 rating: newRating
             })
+        }).then(() => {
+            fetch('/reviews')
+            .then(r => r.json())
+            .then(reviewData => setReviews(reviewData.filter(review => review.user_id === user.id)) )
         })
+        setNewContent()
+        setNewRating()
     }
 
     function handleDelete(id){
@@ -34,22 +41,29 @@ function MyReviews({user}) {
 
     return (
         <div>
-            {reviews?.map(review => (
-                <div>{review.rating}{review.content}
-                <button onClick={() => setShowForm(review)}>Edit/Remove</button>
-                {showForm == review ? 
-                <div>
-                <form onSubmit={handleUpdate(review)}>
-                    <label>New Content:</label>
-                    <textarea value={ newContent } onChange={(e) => setNewContent(e.target.value)}></textarea>
-                    <label>New Rating:</label>
-                    <input type="number" value={ newRating } onChange={(e) => setNewRating(e.target.value)}></input>
-                    <button>Submit</button>
-                </form>
-                <button onClick={() => handleDelete(review.id)}>Remove</button>
-                </div> : 
-                <></>
-                }     
+            {reviews?.map((review, index) => (
+                <div key={index} className="border border-black">
+                    <div>{review.movie.name}</div>
+                    <div>Rating: {review.rating}</div>
+                    <div>Review: {review.content}</div>
+                    <div>Likes: {review.votes.length}</div>
+                    <button onClick={() => showForm === review ? setShowForm([]) : setShowForm(review)}>{showForm === review ? "Hide" : "Edit/Remove"}</button>
+                    {showForm === review ? 
+                        <div>
+                            <form onSubmit={(e) => {
+                                e.preventDefault()
+                                handleUpdate(review)
+                            }}>
+                                <label>New Review:</label>
+                                <textarea value={ newContent } onChange={(e) => setNewContent(e.target.value)}></textarea>
+                                <label>New Rating:</label>
+                                <input type="number" value={ newRating } onChange={(e) => setNewRating(e.target.value)}></input>
+                                <button>Submit</button>
+                            </form>
+                            <button onClick={() => handleDelete(review.id)}>Remove</button>
+                        </div> : 
+                        <></>
+                    }     
                 </div>
                 
             ))}

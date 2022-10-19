@@ -9,27 +9,27 @@ function Home({ user, watchlistSubmit }) {
     return (
       <div>
         <h1 className="text-3xl">Action</h1>
-        {movies.map(movie => (
+        {movies.map((movie, index) => (
           movie.genre.includes("Action") || movie.genre.includes("Adventure") ?
-          <div>{movie.name}
+          <div key={index}>{movie.name}
             <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/movie-details/${movie.id}`}>Details</Link>
             <Link to={`/review-form/${movie.id}`}>Write Review</Link>
           </div> : <></>
         ))}
         <h1 className="text-3xl">Drama</h1>
-        {movies.map(movie => (
+        {movies.map((movie, index) => (
           movie.genre.includes("Drama") ?
-          <div>{movie.name}
+          <div key={index}>{movie.name}
             <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/movie-details/${movie.id}`}>Details</Link>
             <Link to={`/review-form/${movie.id}`}>Write Review</Link>
           </div> : <></>
         ))}
         <h1 className="text-3xl">Comedy</h1>
-        {movies.map(movie => (
+        {movies.map((movie, index) => (
           movie.genre.includes("Comedy") ?
-          <div>{movie.name}
+          <div key={index}>{movie.name}
             <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/movie-details/${movie.id}`}>Details</Link>
             <Link to={`/review-form/${movie.id}`}>Write Review</Link>

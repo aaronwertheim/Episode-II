@@ -21,10 +21,10 @@ function MovieDetails({user}) {
             <div>{movie.name} Details</div>
             <div>{movie.genre?.map(movie => movie + " ")}</div>
             <div>{movie.description}</div>
-            <img src={movie.image} />
+            <img src={movie.image} alt="" />
             <div>Reviews:
-                {movie.reviews?.map(review => (
-                    <ReviewCard review={review} user={user} />
+                {movie.reviews?.map((review, index) => (
+                    <ReviewCard key={index} review={review} user={user} />
                 ))}
             </div>
         </div>
