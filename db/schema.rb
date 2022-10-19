@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 2022_10_19_082902) do
     t.integer "movie_id"
     t.integer "user_id"
     t.string "author"
-    t.integer "liked_by", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
