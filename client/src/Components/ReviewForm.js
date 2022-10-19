@@ -1,19 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 function ReviewForm({user}) {
 
-    const [movie, setMovie] = useState([]);
+   
     const [rating, setRating] = useState();
     const [reviewContent, setReviewContent] = useState();
     const { id } = useParams();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        fetch(`/movies/${id}`)
-        .then(r => r.json())
-        .then(movieData => setMovie(movieData))
-    },[id])
 
     function reviewSubmit(e){
         e.preventDefault()

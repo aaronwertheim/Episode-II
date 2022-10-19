@@ -18,9 +18,13 @@ function Watchlist (){
 
     return(
         <div>
-            { watchlistMovies.map( watchlistMovie =>{
-                return <div>{ watchlistMovie.movie.name } 
-                <button onClick={ () => watchlistRemove(watchlistMovie.id) } >Remove</button></div>
+            { watchlistMovies.map( (watchlistMovie, index) =>{
+                return <div key={index}>
+                    <div>
+                        {watchlistMovie.movie.name + " "}
+                        <button onClick={() => watchlistRemove(watchlistMovie.id) }>Remove</button>
+                    </div>
+                </div>
             })}
         </div>
     )

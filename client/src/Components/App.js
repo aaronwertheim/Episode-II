@@ -56,12 +56,15 @@ function App() {
         <MoviesContext.Provider value={{movies, setMovies}}>
           <Routes>
             <Route path="/" element={<Home user={ user } watchlistSubmit={watchlistSubmit} />} />
+          </Routes>
+        </MoviesContext.Provider>  
+          <Routes>  
             <Route path="/watchlist" element={ <Watchlist /> } />
             <Route path={"movie-details/:id"} element={ <MovieDetails user={user} /> } />
             <Route path={"review-form/:id"} element={ <ReviewForm user={user} /> } />
             <Route path={"/my-reviews"} element={ <MyReviews user={user}/> } />
           </Routes>
-        </MoviesContext.Provider>
+       
     </div>
   );
 }
