@@ -16,9 +16,10 @@ function MovieDetails({user}) {
 
     return(
         <div>
-            <div>{movie.name} Details</div>
-            <div>{movie.genre?.map(movie => movie + " ")}</div>
-            <div>{movie.description}</div>
+            <div>Title: {movie.name} Details</div>
+            <div>Genre: {movie.genre?.map(movie => movie + " ")}</div>
+            <div>Description: {movie.description}</div>
+            <div>Director: {movie.director}</div>
             <img src={movie.image} alt="" />
             <div>Reviews:
                 {movie.reviews?.map((review, index) => (

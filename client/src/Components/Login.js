@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
 
-function Login({ onLogin, watchlistSubmit }) {
+function Login({ onLogin }) {
     const [showLogin, setShowLogin] = useState(true);
     const { movies } = useContext(MoviesContext)
 
@@ -31,12 +31,7 @@ function Login({ onLogin, watchlistSubmit }) {
               </p>
             </>
           )}
-          <div>{movies.map(movie => (
-              <div>{movie.name}
-                <button onClick={() => watchlistSubmit(movie.id)} >Add to Watchlist</button>
-              </div>
-            ))}
-          </div>
+        
           </>
     )
   }

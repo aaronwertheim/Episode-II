@@ -8,6 +8,8 @@ import Watchlist from "./Watchlist";
 import MovieDetails from "./MovieDetails";
 import ReviewForm from "./ReviewForm";
 import MyReviews from "./MyReviews";
+import Welcome from "./Welcome";
+import MovieCatalog from "./MovieCatalog";
 
 
 function App() {
@@ -30,32 +32,44 @@ function App() {
     .catch(error => console.log('error', error));
   },[])
 
-  if (!user) return (
-      <MoviesContext.Provider value={{movies, setMovies}}>
-        <Login onLogin={setUser} watchlistSubmit={watchlistSubmit}/>
-      </MoviesContext.Provider>
-    )
+  
+  function watchlistSubmit(id){
+    if (!user) return alert("Please Log in or Sign up")
+    fetch("/watchlist_movies", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user.id,
+        movie_id: id
+      }),
+    })
+  }
 
-    function watchlistSubmit(id){
-      if (!user) return alert("Please Log in or Sign up")
-      fetch("/watchlist_movies", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_id: user.id,
-          movie_id: id
-        }),
-      })
-    }
+  if (!user) return (
+    <>
+      <Nav setUser={setUser} user={user} />
+      <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/login" element={<Login onLogin={setUser} />} />
+          <Route path={"movie-details/:id"} element={ <MovieDetails user={user} /> } />
+      </Routes>
+      <MoviesContext.Provider value={{movies, setMovies}}>
+          <Routes>
+            <Route path="/movie-catalog" element={<MovieCatalog watchlistSubmit={watchlistSubmit} />} />
+          </Routes>
+      </MoviesContext.Provider>
+    </>
+  )
   
   return (
     <div className="">
-        <Nav setUser={setUser} />
+        <Nav setUser={setUser} user={user}/>
         <MoviesContext.Provider value={{movies, setMovies}}>
           <Routes>
-            <Route path="/" element={<Home user={ user } watchlistSubmit={watchlistSubmit} />} />
+            <Route path="/home" element={<Home user={ user } watchlistSubmit={watchlistSubmit} />} />
+            <Route path="/movie-catalog" element={<MovieCatalog watchlistSubmit={watchlistSubmit} />} />
           </Routes>
         </MoviesContext.Provider>  
           <Routes>  
@@ -64,7 +78,6 @@ function App() {
             <Route path={"review-form/:id"} element={ <ReviewForm user={user} /> } />
             <Route path={"/my-reviews"} element={ <MyReviews user={user}/> } />
           </Routes>
-       
     </div>
   );
 }
