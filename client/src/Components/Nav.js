@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UsersContext } from "../Contexts/UsersContext";
 
-function Nav({setUser, user,}) {
+function Nav() {
     const navigate = useNavigate();
+    const { user, setUser } = useContext(UsersContext);
 
     function handleLogoutClick() {
         fetch("/logout", { method: "DELETE" }).then((r) => {
@@ -21,6 +24,7 @@ function Nav({setUser, user,}) {
 
     return (
         <nav>
+            <div>{"Hello " + user.username}</div>
             <Link to="/home">Home</Link>
             <Link to="/movie-catalog">Browse All</Link>
             <Link to="/watchlist">Watchlist</Link>

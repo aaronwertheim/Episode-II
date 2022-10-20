@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UsersContext } from "../Contexts/UsersContext";
 
-function LoginForm({ onLogin }) {
+function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const { setUser } = useContext(UsersContext);
+
   
     function handleSubmit(e) {
       e.preventDefault();
@@ -20,7 +23,7 @@ function LoginForm({ onLogin }) {
       }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-          r.json().then((user) => onLogin(user)).then(() => navigate("/home"));
+          r.json().then((user) => setUser(user)).then(() => navigate("/home"));
         } else {
           r.json().then((err) => setErrors(err.errors));
         }

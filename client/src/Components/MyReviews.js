@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UsersContext } from "../Contexts/UsersContext";
 
-function MyReviews({user}) {
+function MyReviews() {
 
     const [reviews, setReviews] = useState([]);
-    const [showForm, setShowForm] = useState([])
-    const [newContent, setNewContent] = useState()
-    const [newRating, setNewRating] = useState()
-
+    const [showForm, setShowForm] = useState([]);
+    const [newContent, setNewContent] = useState();
+    const [newRating, setNewRating] = useState();
+    const { user } = useContext(UsersContext);
+    
     useEffect(() => {
         fetch('/reviews')
         .then(r => r.json())
-        .then(reviewData => setReviews(reviewData.filter(review => review.user_id === user.id)) )
+        .then(reviewData => setReviews(reviewData.filter(review => review.user_id === user.id)));
     },[])
 
     function handleUpdate(review){
         
-        fetch('/reviews/'+review.id, {
+        fetch('/reviews/' + review.id, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -27,16 +29,16 @@ function MyReviews({user}) {
         }).then(() => {
             fetch('/reviews')
             .then(r => r.json())
-            .then(reviewData => setReviews(reviewData.filter(review => review.user_id === user.id)) )
+            .then(reviewData => setReviews(reviewData.filter(review => review.user_id === user.id)));
         })
-        setNewContent()
-        setNewRating()
+        setNewContent();
+        setNewRating();
     }
 
     function handleDelete(id){
         fetch('/reviews/'+id, {
             method: "DELETE"
-        }).then (() => setReviews(reviews.filter(review => parseInt(review.id) !== parseInt(id))))
+        }).then (() => setReviews(reviews.filter(review => parseInt(review.id) !== parseInt(id))));
     }
 
     return (
@@ -48,7 +50,9 @@ function MyReviews({user}) {
                     <div>Rating: {review.rating}</div>
                     <div>Review: {review.content}</div>
                     <div>Likes: {review.votes.length}</div>
-                    <button onClick={() => showForm === review ? setShowForm([]) : setShowForm(review)}>{showForm === review ? "Hide" : "Edit/Remove"}</button>
+                    <button onClick={() => showForm === review ? setShowForm([]) : setShowForm(review)}>
+                        {showForm === review ? "Hide" : "Edit/Remove"}
+                    </button>
                     {showForm === review ? 
                         <div>
                             <form onSubmit={(e) => {
@@ -56,9 +60,18 @@ function MyReviews({user}) {
                                 handleUpdate(review)
                             }}>
                                 <label>New Review:</label>
-                                <textarea value={ newContent } onChange={(e) => setNewContent(e.target.value)}></textarea>
+                                <textarea 
+                                    value={newContent} 
+                                    onChange={(e) => setNewContent(e.target.value)}>
+                                </textarea>
                                 <label>New Rating:</label>
-                                <input type="number" min="1" max="10" value={ newRating } onChange={(e) => setNewRating(e.target.value)}></input>
+                                <input 
+                                    type="number" 
+                                    min="1" 
+                                    max="10" 
+                                    value={newRating} 
+                                    onChange={(e) => setNewRating(e.target.value)} 
+                                />
                                 <button>Submit</button>
                             </form>
                             <button onClick={() => handleDelete(review.id)}>Remove</button>
@@ -66,7 +79,6 @@ function MyReviews({user}) {
                         <></>
                     }     
                 </div>
-                
             ))}
         </div>
         
