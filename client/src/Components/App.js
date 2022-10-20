@@ -33,9 +33,8 @@ function App() {
     .catch(error => console.log('error', error));
   },[])
 
-  
   function watchlistSubmit(id){
-    if (!user) return alert("Please Log in to edit watchlist")
+    if (!user) return alert("Please Log in to add to watchlist")
     fetch("/watchlist_movies", {
       method: "POST",
       headers: {
@@ -47,9 +46,9 @@ function App() {
       })
     }).then((r) => {
       if(r.ok) {
-        r.json().then(data => console.log(data))
+        r.json().then(data => console.log(data));
       } else {
-        r.json().then(err => alert("This film is already on your watchlist"))
+        r.json().then(err => alert("This film is already on your watchlist"));
       }
     })
   }
