@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2022_10_19_082902) do
     t.string "description"
     t.string "director"
     t.string "genre", default: [], array: true
+    t.string "actors", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

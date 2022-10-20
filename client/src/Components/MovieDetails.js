@@ -20,7 +20,9 @@ function MovieDetails({user}) {
             <div>Genre: {movie.genre?.map(movie => movie + " ")}</div>
             <div>Description: {movie.description}</div>
             <div>Director: {movie.director}</div>
+            <div>Starring: {movie.actors?.map(a => a.split('=>')[1].replace("@type", "").replaceAll("\"", "").replaceAll(",", ""))}</div>
             <img src={movie.image} alt="" />
+            
             <div>Reviews:
                 {movie.reviews?.map((review, index) => (
                     <ReviewCard key={index} review={review} user={user} />
