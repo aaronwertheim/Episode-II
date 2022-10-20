@@ -22,8 +22,8 @@ function Watchlist (){
                 return <div key={index}>
                     <div>
                         {watchlistMovie.movie.name + " "}
-                        <button onClick={() => watchlistRemove(watchlistMovie.id) }>Remove</button>
                         <Link to={`/movie-details/${watchlistMovie.movie.id}`}>Details</Link>
+                        <button onClick={() => watchlistRemove(watchlistMovie.id) }>Remove</button>
                     </div>
                 </div>
             })}

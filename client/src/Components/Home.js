@@ -18,7 +18,7 @@ function Home({ watchlistSubmit }) {
       return array;
     }
 
-    const moviesShuffled = shuffleArray(movies)
+    const moviesShuffled = shuffleArray(movies);
 
     return (
       <div>
@@ -26,8 +26,8 @@ function Home({ watchlistSubmit }) {
         {moviesShuffled.map((movie, index) => (
           movie.genre.includes("Action") || movie.genre.includes("Adventure") ?
           <div key={index}>{movie.name.replace("&apos;","'")}
-            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/movie-details/${movie.id}`}>Details</Link>
+            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/review-form/${movie.id}`}>Write Review</Link>
           </div> : <></>
         )).slice(0, 40)}
@@ -35,8 +35,8 @@ function Home({ watchlistSubmit }) {
         {moviesShuffled.map((movie, index) => (
           movie.genre.includes("Drama") ?
           <div key={index}>{movie.name.replace("&apos;","'")}
-            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/movie-details/${movie.id}`}>Details</Link>
+            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/review-form/${movie.id}`}>Write Review</Link>
           </div> : <></>
         )).slice(0, 20)}
@@ -44,8 +44,8 @@ function Home({ watchlistSubmit }) {
         {moviesShuffled.map((movie, index) => (
           movie.genre.includes("Comedy") ?
           <div key={index}>{movie.name.replace("&apos;","'")}
-            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/movie-details/${movie.id}`}>Details</Link>
+            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/review-form/${movie.id}`}>Write Review</Link>
           </div> : <></>
         )).slice(0, 75)}
@@ -53,8 +53,8 @@ function Home({ watchlistSubmit }) {
         {moviesShuffled.map((movie, index) => (
           movie.genre.includes("Romance") ?
           <div key={index}>{movie.name.replace("&apos;","'")}
-            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/movie-details/${movie.id}`}>Details</Link>
+            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/review-form/${movie.id}`}>Write Review</Link>
           </div> : <></>
         )).slice(0, 150)}
@@ -62,8 +62,8 @@ function Home({ watchlistSubmit }) {
         {moviesShuffled.map((movie, index) => (
           movie.genre.includes("Western") ?
           <div key={index}>{movie.name.replace("&apos;","'")}
-            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/movie-details/${movie.id}`}>Details</Link>
+            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/review-form/${movie.id}`}>Write Review</Link>
           </div> : <></>
         ))}
@@ -71,8 +71,8 @@ function Home({ watchlistSubmit }) {
         {moviesShuffled.map((movie, index) => (
           movie.genre.includes("Animation") ?
           <div key={index}>{movie.name.replace("&apos;","'")}
-            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/movie-details/${movie.id}`}>Details</Link>
+            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/review-form/${movie.id}`}>Write Review</Link>
           </div> : <></>
         )).slice(0, 125)}
@@ -80,8 +80,8 @@ function Home({ watchlistSubmit }) {
         {moviesShuffled.map((movie, index) => (
           movie.genre.includes("Horror") ?
           <div key={index}>{movie.name.replace("&apos;","'")}
-            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/movie-details/${movie.id}`}>Details</Link>
+            <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
             <Link to={`/review-form/${movie.id}`}>Write Review</Link>
           </div> : <></>
         ))}
