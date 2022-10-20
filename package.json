@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "client": "^0.0.1",
+    "faker": "^6.6.6",
     "prefix": "^1.0.0",
     "react-router-dom": "^6.4.2"
   }

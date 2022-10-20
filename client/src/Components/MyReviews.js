@@ -58,7 +58,7 @@ function MyReviews({user}) {
                                 <label>New Review:</label>
                                 <textarea value={ newContent } onChange={(e) => setNewContent(e.target.value)}></textarea>
                                 <label>New Rating:</label>
-                                <input type="number" value={ newRating } onChange={(e) => setNewRating(e.target.value)}></input>
+                                <input type="number" min="1" max="10" value={ newRating } onChange={(e) => setNewRating(e.target.value)}></input>
                                 <button>Submit</button>
                             </form>
                             <button onClick={() => handleDelete(review.id)}>Remove</button>

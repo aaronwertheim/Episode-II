@@ -16,6 +16,7 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [movies, setMovies] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -34,7 +35,7 @@ function App() {
 
   
   function watchlistSubmit(id){
-    if (!user) return alert("Please Log in or Sign up")
+    if (!user) return alert("Please Log in to edit watchlist")
     fetch("/watchlist_movies", {
       method: "POST",
       headers: {
@@ -43,7 +44,13 @@ function App() {
       body: JSON.stringify({
         user_id: user.id,
         movie_id: id
-      }),
+      })
+    }).then((r) => {
+      if(r.ok) {
+        r.json().then(data => console.log(data))
+      } else {
+        r.json().then(err => alert("This film is already on your watchlist"))
+      }
     })
   }
 
@@ -57,7 +64,7 @@ function App() {
       </Routes>
       <MoviesContext.Provider value={{movies, setMovies}}>
           <Routes>
-            <Route path="/movie-catalog" element={<MovieCatalog watchlistSubmit={watchlistSubmit} />} />
+            <Route path="/movie-catalog" element={<MovieCatalog watchlistSubmit={watchlistSubmit} user={user} />} />
           </Routes>
       </MoviesContext.Provider>
     </>
@@ -68,8 +75,8 @@ function App() {
         <Nav setUser={setUser} user={user}/>
         <MoviesContext.Provider value={{movies, setMovies}}>
           <Routes>
-            <Route path="/home" element={<Home user={ user } watchlistSubmit={watchlistSubmit} />} />
-            <Route path="/movie-catalog" element={<MovieCatalog watchlistSubmit={watchlistSubmit} />} />
+            <Route path="/home" element={<Home user={ user } watchlistSubmit={watchlistSubmit} errors={errors} />} />
+            <Route path="/movie-catalog" element={<MovieCatalog watchlistSubmit={watchlistSubmit} user={user}/>} />
           </Routes>
         </MoviesContext.Provider>  
           <Routes>  
