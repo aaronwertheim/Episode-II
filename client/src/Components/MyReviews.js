@@ -43,6 +43,7 @@ function MyReviews({user}) {
         <div>
             {reviews?.map((review, index) => (
                 <div key={index} className="border border-black">
+                    <div>{review.created_at}</div>
                     <div>{review.movie.name}</div>
                     <div>Rating: {review.rating}</div>
                     <div>Review: {review.content}</div>

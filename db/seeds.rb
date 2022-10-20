@@ -8,6 +8,7 @@ def get_movie_data
             image: m["image"],
             description: m["description"],
             director: m["director"][0]["name"],
+            actors: m["actor"],
             genre: m["genre"],
         )
     end     
