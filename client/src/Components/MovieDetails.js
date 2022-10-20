@@ -15,8 +15,8 @@ function MovieDetails() {
     },[id])
 
     return(
-        <div>
-            <div>Title: {movie.name?.replace("&apos;","'")} Details</div>
+        <div className="h-screen overflow-auto no-scrollbar">
+            <div>Title: {movie.name?.replace("&apos;","'")}</div>
             <div>Genre: {movie.genre?.map(movie => movie + " ")}</div>
             <div>Description: {movie.description?.replaceAll("&apos;","'").replaceAll("&quot;", "\"")}</div>
             <div>Director: {movie.director}</div>

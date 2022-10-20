@@ -17,7 +17,7 @@ function Watchlist (){
     }
 
     return(
-        <div className="grid grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-3 lg:grid-cols-6 h-screen overflow-auto no-scrollbar">
             {watchlistMovies.map((watchlistMovie, index) => (
                <div className="w-5/6" key={index}>
                     <Link to={`/movie-details/${watchlistMovie.movie.id}`}>

@@ -23,15 +23,17 @@ function Nav() {
     )
 
     return (
-        <nav>
+        <nav className="grid h-screen float-left">
             <div>{"Hello " + user.username}</div>
             <Link to="/home">Home</Link>
             <Link to="/movie-catalog">Browse All</Link>
             <Link to="/watchlist">Watchlist</Link>
             <Link to="/my-reviews">My Reviews</Link>
-            <button onClick={handleLogoutClick}>
-                Logout
-            </button>
+            <div>
+                <button onClick={handleLogoutClick}>
+                    Logout
+                </button>
+            </div>
         </nav>
     )
 }

@@ -12,7 +12,7 @@ function MovieCatalog({ watchlistSubmit }) {
     const moviesAlphabetical = movies.sort((a, b) => a.id - b.id).reverse();
     
     return (
-        <div>
+        <div className="h-screen overflow-auto no-scrollbar">
             <input placeholder="Search by Title, Actor, Director" 
                 onChange={(e) => setSearchParams(e.target.value)}
             />
