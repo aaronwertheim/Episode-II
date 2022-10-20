@@ -6,6 +6,7 @@ function ReviewForm({user}) {
    
     const [rating, setRating] = useState();
     const [reviewContent, setReviewContent] = useState();
+    const [errors, setErrors] = useState([]);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -23,18 +24,33 @@ function ReviewForm({user}) {
             content: reviewContent,
             author: user.username,
           }),
-        }).then(() => navigate("/my-reviews"))
+        }).then((r) => {
+            if(r.ok) {
+                r.json().then(() => navigate("/my-reviews"))
+            }
+            else {
+                r.json().then(err => setErrors(err.errors))
+            }
+        })
       }
     
 
     return(
-        <form onSubmit={reviewSubmit}>
-            <label>Rating:</label>
-            <input type="number" value={rating} onChange={(e) => setRating(e.target.value)}></input>
-            <lable>Write Your Review:</lable>
-            <textarea value={reviewContent} onChange={(e) => setReviewContent(e.target.value)}></textarea>
-            <button>Submit Review</button>
-        </form>
+        <div>
+            <form onSubmit={reviewSubmit}>
+                <label>Rating:</label>
+                <input type="number" min="1" max="10" value={rating} onChange={(e) => setRating(e.target.value)}></input>
+                <lable>Write Your Review:</lable>
+                <textarea value={reviewContent} onChange={(e) => setReviewContent(e.target.value)}></textarea>
+                <button>Submit Review</button>
+            </form>
+            <div>
+                {errors.map(err => (
+                    <div>{err}</div>
+                ))}
+            </div>
+        </div>
+        
     )
     
 }

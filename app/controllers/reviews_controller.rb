@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
 
     def destroy
         review = Review.find(params[:id])
+        review.votes.destroy_all
         review.destroy
         head :no_content
     end 

@@ -11,7 +11,7 @@ function ReviewCard({review, user}) {
     },[])
     
     function likeReview(rev) {
-        if(!user) return alert("Please Log in or Sign up")
+        if(!user) return alert("Only registered users can upvote")
         else {
             fetch('/votes', {
             method: "POST",

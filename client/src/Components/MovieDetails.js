@@ -13,12 +13,11 @@ function MovieDetails({user}) {
         .then(movieData => setMovie(movieData))
     },[id])
 
-
     return(
         <div>
-            <div>Title: {movie.name} Details</div>
+            <div>Title: {movie.name?.replace("&apos;","'")} Details</div>
             <div>Genre: {movie.genre?.map(movie => movie + " ")}</div>
-            <div>Description: {movie.description}</div>
+            <div>Description: {movie.description?.replaceAll("&apos;","'").replaceAll("&quot;", "\"")}</div>
             <div>Director: {movie.director}</div>
             <div>Starring: {movie.actors?.map(a => a.split('=>')[1].replace("@type", "").replaceAll("\"", "").replaceAll(",", ""))}</div>
             <img src={movie.image} alt="" />
