@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 function ReviewCard({review, user}) {
     
     const [votes, setVotes] = useState([])
+    
 
     useEffect(() => {
         fetch('/votes')
@@ -25,6 +26,7 @@ function ReviewCard({review, user}) {
 
     return (
         <div>
+            <div>Date: {review.created_at}</div>
             <div>Author: {review.author}</div> 
             <div>Rating: {review.rating}</div>
             <div>Review: {review.content}</div>

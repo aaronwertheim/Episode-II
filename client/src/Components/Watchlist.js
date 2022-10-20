@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Watchlist (){
     const [watchlistMovies, setWatchlistMovies] = useState([])
-
 
     useEffect(() => {
         fetch("/watchlist_movies")
@@ -23,6 +23,7 @@ function Watchlist (){
                     <div>
                         {watchlistMovie.movie.name + " "}
                         <button onClick={() => watchlistRemove(watchlistMovie.id) }>Remove</button>
+                        <Link to={`/movie-details/${watchlistMovie.movie.id}`}>Details</Link>
                     </div>
                 </div>
             })}

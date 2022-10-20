@@ -13,8 +13,6 @@ function MovieDetails({user}) {
         .then(movieData => setMovie(movieData))
     },[id])
 
-   
-
 
     return(
         <div>
