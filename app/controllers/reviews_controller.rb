@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
     def index
-        render json: Review.all
+        render json: Review.order(:created_at)
     end
 
     def create

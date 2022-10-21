@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { UsersContext } from "../Contexts/UsersContext";
 
-function ReviewCard({review, user}) {
+function ReviewCard({ review }) {
     
-    const [votes, setVotes] = useState([])
+    const [votes, setVotes] = useState([]);
+    const { user } = useContext(UsersContext);
 
     useEffect(() => {
         fetch('/votes')
         .then(r => r.json())
-        .then(voteData => setVotes(voteData.filter(vote => vote.review_id === review.id).length))
+        .then(voteData => setVotes(voteData.filter(vote => vote.review_id === review.id).length));
     },[])
     
     function likeReview(rev) {
-        if(!user) return alert("Only registered users can upvote")
+        if(!user) return alert("Only registered users can upvote");
         else {
             fetch('/votes', {
             method: "POST",
@@ -24,7 +26,7 @@ function ReviewCard({review, user}) {
             }),
             }).then(r => {
                 if(r.ok){
-                    r.json().then(setVotes(votes + 1))
+                    r.json().then(setVotes(votes + 1));
                 } else {
                     r.json().then((err) => console.log(err.errors));
                 }

@@ -1,18 +1,16 @@
-import { useContext, useState } from "react";
-import { MoviesContext } from "../Contexts/MoviesContext";
+import { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
 
-function Login({ onLogin }) {
+function Login() {
     const [showLogin, setShowLogin] = useState(true);
-    const { movies } = useContext(MoviesContext)
 
     return (
         <>
         {showLogin ? (
             <>
-              <LoginForm onLogin={onLogin} />
+              <LoginForm />
               <p>
                 Don't have an account? &nbsp;
                 <button onClick={() => setShowLogin(false)}>
@@ -22,7 +20,7 @@ function Login({ onLogin }) {
             </>
           ) : (
             <>
-              <SignUpForm onLogin={onLogin} />
+              <SignUpForm />
               <p>
                 Already have an account? &nbsp;
                 <button onClick={() => setShowLogin(true)}>
