@@ -57,12 +57,12 @@ function App() {
     <UsersContext.Provider value={{ user, setUser }}>
       <Nav />
       <Routes>
-          <Route path="/" element={ <Welcome /> } />
           <Route path="/login" element={ <Login /> } />
           <Route path={"/movie-details/:id"} element={ <MovieDetails /> } />
       </Routes>
       <MoviesContext.Provider value={{ movies, setMovies }}>
           <Routes>
+            <Route path="/" element={ <Welcome /> } />
             <Route path="/movie-catalog" element={ <MovieCatalog watchlistSubmit={watchlistSubmit} /> } />
           </Routes>
       </MoviesContext.Provider>

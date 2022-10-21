@@ -79,7 +79,7 @@ function MyReviews() {
                         <></>
                     }     
                 </div>
-            ))}
+            )).reverse()}
         </div>
         
     )
