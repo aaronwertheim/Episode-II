@@ -24,7 +24,7 @@ function Nav() {
 
     return (
         <nav className="grid h-screen float-left">
-            <div>{"Hello " + user.username}</div>
+            {/* <div>{"Hello " + user.username}</div> */}
             <Link to="/home">Home</Link>
             <Link to="/movie-catalog">Browse All</Link>
             <Link to="/watchlist">Watchlist</Link>
