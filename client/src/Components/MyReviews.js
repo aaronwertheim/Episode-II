@@ -42,9 +42,9 @@ function MyReviews() {
     }
 
     return (
-        <div>
+        <div className="h-screen overflow-auto no-scrollbar">
             {reviews?.map((review, index) => (
-                <div key={index} className="border border-black">
+                <div className="border border-black" key={index}>
                     <div>{review.created_at}</div>
                     <div>{review.movie.name}</div>
                     <div>Rating: {review.rating}</div>

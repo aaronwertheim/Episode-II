@@ -21,7 +21,7 @@ function Home({ watchlistSubmit }) {
     const moviesShuffled = shuffleArray(movies);
 
     return (
-      <div>
+      <div className="h-screen overflow-y-auto no-scrollbar">
         <h1 className="text-3xl">Action</h1>
         <div className="grid grid-flow-col overflow-auto">
           {moviesShuffled.map((movie, index) => (
