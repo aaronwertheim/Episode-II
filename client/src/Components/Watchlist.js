@@ -17,14 +17,13 @@ function Watchlist (){
     }
 
     return(
-        <div>
+        <div className="grid grid-cols-3 lg:grid-cols-6">
             {watchlistMovies.map((watchlistMovie, index) => (
-               <div key={index}>
-                    <div>
-                        {watchlistMovie.movie.name + " "}
-                        <Link to={`/movie-details/${watchlistMovie.movie.id}`}>Details</Link>
-                        <button onClick={() => watchlistRemove(watchlistMovie.id) }>Remove</button>
-                    </div>
+               <div className="w-5/6" key={index}>
+                    <Link to={`/movie-details/${watchlistMovie.movie.id}`}>
+                        <img className="" src={watchlistMovie.movie.image} alt="" />
+                    </Link>
+                    <button onClick={() => watchlistRemove(watchlistMovie.id) }>Remove</button>
                 </div>
             ))}
         </div>
