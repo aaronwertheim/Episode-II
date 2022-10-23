@@ -4,6 +4,10 @@ class ReviewsController < ApplicationController
         render json: Review.order(:created_at)
     end
 
+    def user_reviews
+        render json: @current_user.reviews.order(:created_at)
+    end
+
     def create
         render json: Review.create!(review_params)
     end

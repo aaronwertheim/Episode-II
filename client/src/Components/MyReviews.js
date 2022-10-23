@@ -10,7 +10,7 @@ function MyReviews() {
     const { user } = useContext(UsersContext);
     
     useEffect(() => {
-        fetch('/reviews')
+        fetch('/user-reviews')
         .then(r => r.json())
         .then(reviewData => setReviews(reviewData.filter(review => review.user_id === user.id)));
     },[])
@@ -27,7 +27,7 @@ function MyReviews() {
                 rating: newRating
             })
         }).then(() => {
-            fetch('/reviews')
+            fetch('/user-reviews')
             .then(r => r.json())
             .then(reviewData => setReviews(reviewData.filter(review => review.user_id === user.id)));
         })
