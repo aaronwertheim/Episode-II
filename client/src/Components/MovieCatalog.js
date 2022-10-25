@@ -33,23 +33,23 @@ function MovieCatalog({ watchlistSubmit }) {
                 movie.actors.toString().toLowerCase().includes(searchParams?.toLowerCase()) ?
                 <div className="w-5/6 my-12" key={index}>
                     <Link to={`/movie-details/${movie.id}`}>
-                        <img className="h-full" src={movie.image} alt="" />
+                        <img className="h-full border-2 border-black rounded-t-sm" src={movie.image} alt="" />
                     </Link>
                     <div>
                         <button 
-                            className=" bg-gradient-to-b from-gray-700 to-gray-900 hover:opacity-50 text-white uppercase w-full" 
+                            className="bg-gradient-to-b from-gray-700 to-gray-900 hover:opacity-50 text-white uppercase w-full p-1" 
                             onClick={() => watchlistSubmit(movie.id)}>
                             Add to Watchlist
                         </button>
                     </div>
                     <div>
                         {user ? 
-                            <button className="hover:opacity-50 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase w-full">
+                            <button className="hover:opacity-50 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase w-full p-1 rounded-b-md">
                                 <Link  to={`/review-form/${movie.id}`}>Write Review</Link>
                             </button>
                             : 
                             <button 
-                                className="hover:opacity-50 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase w-full" 
+                                className="hover:opacity-50 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase w-full p-1 rounded-b-md" 
                                 onClick={() => alert("Please log in to review")}>
                                 Write Review
                             </button>}
