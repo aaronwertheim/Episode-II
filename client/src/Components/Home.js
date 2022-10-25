@@ -22,22 +22,22 @@ function Home({ watchlistSubmit }) {
     const moviesShuffled = shuffleArray(movies);
 
     return (
-      <div className="h-screen overflow-y-auto no-scrollbar">
+      <div className="bg-yellow-400 h-screen overflow-y-auto no-scrollbar">
         {genreArray.map(g => (
-          <div>
-            <h1 className="text-3xl">{g}</h1>
+          <div className="my-5">
+            <h1 className="font-oswald font-extrabold uppercase ml-5 text-3xl">{g}</h1>
               <div className="grid grid-flow-col overflow-auto">
               {moviesShuffled.map((movie, index) => (
               movie.genre.includes(g) ?
               <div className="w-44 h-100" key={index}>
                 <Link to={`/movie-details/${movie.id}`}>
-                  <img className="w-11/12" src={movie.image} alt="" />
+                  <img className="h-5/6 border-2 border-black rounded-t-sm w-11/12" src={movie.image} alt="" />
                 </Link>
                 <div>
-                  <button onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
+                  <button className="bg-gradient-to-b from-gray-700 to-gray-900 hover:opacity-50 text-white uppercase w-11/12 px-1" onClick={ () => watchlistSubmit(movie.id) }>Add to Watchlist</button>
                 </div>
                 <div>
-                  <Link to={`/review-form/${movie.id}`}>Write Review</Link>
+                  <button className="bg-gradient-to-b from-gray-700 to-gray-900 hover:opacity-50 text-white uppercase w-11/12 rounded-b-md px-1"><Link to={`/review-form/${movie.id}`}>Write Review</Link></button>
                 </div>
               </div> : <></>
             ))}

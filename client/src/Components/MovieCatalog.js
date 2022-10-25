@@ -26,14 +26,14 @@ function MovieCatalog({ watchlistSubmit }) {
                     onChange={(e) => setSearchParams(e.target.value)}
                 />
             </div>
-            <div className="bg-yellow-400 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-items-center pt-5">
+            <div className="bg-yellow-400 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 justify-items-center pt-5">
                {moviesAlphabetical.map((movie,index) => (
                 movie.name.toLowerCase().includes(searchParams?.toLowerCase()) ||
                 movie.director.toLowerCase().includes(searchParams?.toLowerCase()) ||
                 movie.actors.toString().toLowerCase().includes(searchParams?.toLowerCase()) ?
                 <div className="w-5/6 my-12" key={index}>
                     <Link to={`/movie-details/${movie.id}`}>
-                        <img className="h-full border-2 border-black rounded-t-sm" src={movie.image} alt="" />
+                        <img className="h-5/6 border-2 border-black rounded-t-sm" src={movie.image} alt="" />
                     </Link>
                     <div>
                         <button 

@@ -33,13 +33,13 @@ function Nav() {
     )
 
     return (
-        <div className="float-left px-1">
+        <div className="float-left px-1 h-screen grid font-medium text-gray-700 bg-gradient-to-b from-gray-700 to-gray-900 items-center">
             
-            <div><Link to="/home">Home</Link></div>
-            <div><Link to="/movie-catalog">Browse All</Link></div>
-            <div><Link to="/watchlist">Watchlist</Link></div>
-            <div><Link to="/my-reviews">My Reviews</Link></div>
-            <div><button onClick={handleLogoutClick}>Logout</button></div>
+            <div className="h-8 text-center bg-gray-200 hover:text-blue-700 border border-gray-300 shadow rounded-md pt-0.5"><Link to="/home">Home</Link></div>
+            <div className="h-8 text-center bg-gray-200 hover:text-blue-700 border border-gray-300 shadow rounded-md pt-0.5"><Link to="/movie-catalog">Browse All</Link></div>
+            <div className="h-8 text-center bg-gray-200 hover:text-blue-700 border border-gray-300 shadow rounded-md pt-0.5"><Link to="/watchlist">Watchlist</Link></div>
+            <div className="h-8 text-center bg-gray-200 hover:text-blue-700 border border-gray-300 shadow rounded-md px-1 pt-0.5"><Link to="/my-reviews">My Reviews</Link></div>
+            <div className="h-8 text-center bg-gray-200 hover:text-blue-700 border border-gray-300 shadow rounded-md pt-0.5"><button onClick={handleLogoutClick}>Logout</button></div>
             
         </div>
     )
