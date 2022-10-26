@@ -26,7 +26,7 @@ function Home({ watchlistSubmit }) {
         {genreArray.map(g => (
           <div className="my-5">
             <h1 className="font-oswald font-extrabold uppercase ml-5 text-3xl">{g}</h1>
-              <div className="grid grid-flow-col overflow-auto">
+              <div className="grid grid-flow-col overflow-auto no-scrollbar">
               {moviesShuffled.map((movie, index) => (
               movie.genre.includes(g) ?
               <div className="w-44 h-100" key={index}>

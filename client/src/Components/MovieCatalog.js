@@ -38,14 +38,19 @@ function MovieCatalog({ watchlistSubmit }) {
                     <div>
                         <button 
                             className="bg-gradient-to-b from-gray-700 to-gray-900 hover:opacity-50 text-white uppercase w-full p-1" 
-                            onClick={() => watchlistSubmit(movie.id)}>
-                            Add to Watchlist
+                            onClick={(e) => {
+                                watchlistSubmit(movie.id)
+                                e.target.textContent = "On Watchlist"
+                            }}>
+                            {user?.watchlist_movies.map(m => m.movie_id).includes(movie.id) ? 
+                            "On Watchlist" :
+                            "Add to Watchlist"}
                         </button>
                     </div>
                     <div>
                         {user ? 
                             <button className="hover:opacity-50 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase w-full p-1 rounded-b-md">
-                                <Link  to={`/review-form/${movie.id}`}>Write Review</Link>
+                                <Link to={`/review-form/${movie.id}`}>Write Review</Link>
                             </button>
                             : 
                             <button 

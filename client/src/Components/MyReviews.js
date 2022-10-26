@@ -44,76 +44,82 @@ function MyReviews() {
     return (
         <div className="h-screen overflow-auto no-scrollbar">
             {reviews?.map((review, index) => (
-                <div className="flex" key={index}>
-                    <div className="rounded-3xl inline-block overflow-hidden shadow-xl max-w-xs cursor-pointer transition ease-in-out hover:-translate-y-1 hover:scale-102 duration-300">
-                    <div class="relative group w-full overflow-hidden bg-black h-32 rounded-t-3xl">
-                        <img
-                        src={ review.movie.image }
-                        class="object-cover w-full h-full transform duration-700 backdrop-opacity-100"
-                        />
-                        <div class="absolute bg-gradient-to-t from-black w-full h-full flex items-end justify-center -inset-y-0"><h1 class="font-bold text-2xl text-white mb-2">{review.movie.name} </h1></div>
-                    </div>
-                    <div class="bg-white">
-                        <div class="text-center px-3 pb-6 pt-2">
-                            <p>{review.created_at}</p>
-                            <p class="mt-2 font-sans font-light text-slate-700">
-                             {review.content}
-                            </p>
-                        </div>
-                        <div class="flex justify-center pb-3 text-slate-700">
-                            <div class="text-center mr-3 border-r pr-3 last:border-r-0">
-                                <h2>Rating:</h2>
-                                <span>{review.rating}</span>
+                <div className="flex flex-col md:flex-row" key={index}>
+                    <div className="rounded-3xl inline-block overflow-hidden shadow-xl max-w-xs my-4 ml-4">
+                        <div class="relative w-full overflow-hidden bg-black h-32 rounded-t-3xl">
+                            <img
+                            src={ review.movie.image }
+                            class="object-cover w-full h-full backdrop-opacity-100"
+                            />
+                            <div class="absolute bg-gradient-to-t from-black w-full h-full flex items-end justify-center -inset-y-0">
+                                <h1 class="font-bold text-2xl text-white mb-2">{review.movie.name} </h1>
                             </div>
-                            <div class="text-center mr-3 border-r pr-3 last:border-r-0">
-                                <h2>Likes:</h2>
-                                <span>{review.votes.length}</span>
-                            </div>
-                            <button onClick={() => showForm === review ? setShowForm([]) : setShowForm(review)}>
-                                {showForm === review ? "Hide" : "Edit/Remove"}
-                            </button>
                         </div>
-                    </div>
+                        <div class="bg-white">
+                            <div class="text-center px-3 pb-6 pt-2">
+                                <p>{review.created_at}</p>
+                                <p class="mt-2 font-sans font-light text-slate-700">
+                                {review.content}
+                                </p>
+                            </div>
+                            <div class="flex justify-center pb-3 text-slate-700">
+                                <div class="text-center mr-3 border-r pr-3 last:border-r-0">
+                                    <h2>Rating:</h2>
+                                    <span>{review.rating}</span>
+                                </div>
+                                <div class="text-center mr-3 border-r pr-3 last:border-r-0">
+                                    <h2>Likes:</h2>
+                                    <span>{review.votes.length}</span>
+                                </div>
+                                <button className="hover:text-blue-700" onClick={() => showForm === review ? setShowForm([]) : setShowForm(review)}>
+                                    {showForm === review ? "Hide" : "Edit / Remove"}
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     {showForm === review ? 
-                        <div className="mx-auto w-full max-w-lg">
-                            <h1 class="text-4xl font-medium">Write Review</h1>
-                            <p class="mt-3 font-bold">Reviewing {review.movie.name} </p>
+                        <div className="mx-auto w-full max-w-lg mt-4">
+                            <h1 class="text-3xl font-medium uppercase">Edit your Review</h1>
+                            <p class="mt-3 font-bold">{review.movie.name} </p>
                             <form className="mt-10" onSubmit={(e) => {
                                 e.preventDefault()
                                 handleUpdate(review)
                             }}>
                                 <div className="grid gap-6 sm:grid-cols-2" >
-                                <div class="relative z-0 col-span-2">
-                                    <textarea 
-                                        rows="2" 
-                                        className="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                                        placeholder=" "
-                                        value={newContent} 
-                                        onChange={(e) => setNewContent(e.target.value)}>
-                                    </textarea>
-                                    <label
-                                        className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
-                                        New Review:
-                                    </label>
+                                    <div className="relative z-0">
+                                        <input 
+                                            className="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                                            placeholder={review.rating}
+                                            type="number" 
+                                            min="1" 
+                                            max="10" 
+                                            value={newRating} 
+                                            onChange={(e) => setNewRating(e.target.value)} 
+                                        />
+                                        <label 
+                                            className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
+                                            New Rating:
+                                        </label>
+                                    </div>
+                                    <div class="relative z-0 col-span-2">
+                                        <textarea 
+                                            rows="2" 
+                                            className="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                                            placeholder={review.content}
+                                            value={newContent} 
+                                            onChange={(e) => setNewContent(e.target.value)}>
+                                        </textarea>
+                                        <label
+                                            className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
+                                            New Review:
+                                        </label>
+                                    </div>
+                                    <button className="rounded-md bg-black px-10 py-2 text-white hover:opacity-20" type="submit">Update</button>
+                                    <button className="rounded-md bg-black px-10 py-2 text-white hover:bg-red-600" onClick={() => handleDelete(review.id)}>Delete This Review</button>
                                 </div>
-                                <div className="relative z-0">
-                                <label
-                                className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">New Rating:</label>
-                                <input 
-                                    className="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                                    placeholder=" "
-                                    type="number" 
-                                    min="1" 
-                                    max="10" 
-                                    value={newRating} 
-                                    onChange={(e) => setNewRating(e.target.value)} 
-                                />
-                                </div>
-                                </div>
-                                <button className="mt-5 rounded-md bg-black px-10 py-2 text-white">Submit</button>
+                                
                             </form>
-                            <button className="mt-5 rounded-md bg-black px-10 py-2 text-white" onClick={() => handleDelete(review.id)}>Remove</button>
+                            
                         </div> : 
                         <></>
                     }     
