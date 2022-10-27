@@ -31,14 +31,14 @@ function MovieCatalog({ watchlistSubmit }) {
                 movie.name.toLowerCase().includes(searchParams?.toLowerCase()) ||
                 movie.director.toLowerCase().includes(searchParams?.toLowerCase()) ||
                 movie.actors.toString().toLowerCase().includes(searchParams?.toLowerCase()) ?
-                <div className=" w-11/12 my-16 grid " key={index}>
-                    <div className=" ">
+                <div className=" w-11/12 my-6 grid" key={index}>
+                    <div>
                         <Link to={`/movie-details/${movie.id}`}>
-                            <img className="h-full  border-2 border-black rounded-t-sm" src={movie.image} alt="" />
+                            <img className="h-full border-2 border-black rounded-t-sm" src={movie.image} alt="" />
                         </Link>
-                        <div className="">
+                        <div className="-mt-10">
                             <button 
-                                className="bg-gradient-to-b from-gray-700 to-gray-900 hover:opacity-50 text-white uppercase w-full p-1" 
+                                className="hover:text-blue-500 bg-gradient-to-b from-gray-700 to-gray-900 text-white font-semibold uppercase w-full p-1" 
                                 onClick={(e) => {
                                     watchlistSubmit(movie.id)
                                     e.target.textContent = "On Watchlist"
@@ -48,17 +48,17 @@ function MovieCatalog({ watchlistSubmit }) {
                                 "Add to Watchlist"}
                             </button>
                             {user ? 
-                                <button className="hover:opacity-50 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase w-full p-1 rounded-b-md">
-                                    <Link to={`/review-form/${movie.id}`}>Write Review</Link>
-                                </button>
+                            <button className="hover:text-blue-500 bg-gradient-to-b from-gray-700 to-gray-900 text-white font-semibold uppercase w-full p-1 rounded-b-md">
+                                <Link to={`/review-form/${movie.id}`}>Write Review</Link>
+                            </button>
                                 : 
-                                <button 
-                                    className="hover:opacity-50 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase w-full p-1 rounded-b-md " 
-                                    onClick={() => alert("Please log in to review")}>
-                                    Write Review
-                                </button>}
+                            <button 
+                                className="hover:text-blue-500 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase font-semibold w-full p-1 rounded-b-md " 
+                                onClick={() => alert("Please log in to review")}>
+                                Write Review
+                            </button>}
                         </div>
-                    </div>
+                    </div>   
                 </div> : <></>
                 ))} 
             </div>
