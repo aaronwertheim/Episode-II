@@ -35,14 +35,21 @@ function ReviewCard({ review }) {
     }
 
     return (
-        <div>
-            <div>Date: {review.created_at}</div>
-            <div>Author: {review.author}</div> 
-            <div>Rating: {review.rating}</div>
-            <div>Review: {review.content}</div>
-            <div><button onClick={() => likeReview(review)}>👍</button> {votes}</div>
+        <div className=" overflow-auto mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 border-b border-gray-600">
+            <h1 className="block mt-4 text-lg font-semibold font-oswald text-gray-800 underline dark:text-white ">
+                {review.author}
+            </h1>
+            <h2 className=" text-sm text-gray-500 uppercase">{review.created_at}</h2>
+            <p className="mt-3 text-justify text-sm text-gray-500 dark:text-gray-300">
+                {review.content} 
+            </p>
+            <div className="text-md text-gray-700 dark:text-gray-200 mt-6 font-bold">
+                <h1><span className="underline font-oswald">Rating:</span> {review.rating}</h1>
+                <h1><span onClick={() => likeReview(review)} className="cursor-pointer font-oswald">👍:</span> {votes} </h1>
+            </div>
         </div>
+
     )
 }
 
-export default ReviewCard
+export default ReviewCard;

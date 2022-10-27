@@ -46,28 +46,29 @@ function MyReviews() {
             {reviews?.map((review, index) => (
                 <div className="flex flex-col md:flex-row" key={index}>
                     <div className="rounded-3xl inline-block overflow-hidden shadow-xl max-w-xs my-4 ml-4">
-                        <div class="relative w-full overflow-hidden bg-black h-32 rounded-t-3xl">
+                        <div className="relative w-full overflow-hidden bg-black h-32 rounded-t-3xl">
                             <img
-                            src={ review.movie.image }
-                            class="object-cover w-full h-full backdrop-opacity-100"
+                                src={ review.movie.image }
+                                className="object-cover w-full h-full backdrop-opacity-100"
+                                alt=""
                             />
-                            <div class="absolute bg-gradient-to-t from-black w-full h-full flex items-end justify-center -inset-y-0">
-                                <h1 class="font-bold text-2xl text-white mb-2">{review.movie.name} </h1>
+                            <div className="absolute bg-gradient-to-t from-black w-full h-full flex items-end justify-center -inset-y-0">
+                                <h1 className="font-bold text-2xl text-white mb-2">{review.movie.name} </h1>
                             </div>
                         </div>
-                        <div class="bg-white">
-                            <div class="text-center px-3 pb-6 pt-2">
+                        <div className="bg-white">
+                            <div className="text-center px-3 pb-6 pt-2">
                                 <p>{review.created_at}</p>
-                                <p class="mt-2 font-sans font-light text-slate-700">
+                                <p className="mt-2 font-sans font-light text-slate-700">
                                 {review.content}
                                 </p>
                             </div>
-                            <div class="flex justify-center pb-3 text-slate-700">
-                                <div class="text-center mr-3 border-r pr-3 last:border-r-0">
+                            <div className="flex justify-center pb-3 text-slate-700">
+                                <div className="text-center mr-3 border-r pr-3 last:border-r-0">
                                     <h2>Rating:</h2>
                                     <span>{review.rating}</span>
                                 </div>
-                                <div class="text-center mr-3 border-r pr-3 last:border-r-0">
+                                <div className="text-center mr-3 border-r pr-3 last:border-r-0">
                                     <h2>Likes:</h2>
                                     <span>{review.votes.length}</span>
                                 </div>
@@ -79,8 +80,8 @@ function MyReviews() {
                     </div>
                     {showForm === review ? 
                         <div className="mx-auto w-full max-w-lg mt-4">
-                            <h1 class="text-3xl font-medium uppercase">Edit your Review</h1>
-                            <p class="mt-3 font-bold">{review.movie.name} </p>
+                            <h1 className="text-3xl font-medium uppercase">Edit your Review</h1>
+                            <p className="mt-3 font-bold">{review.movie.name} </p>
                             <form className="mt-10" onSubmit={(e) => {
                                 e.preventDefault()
                                 handleUpdate(review)
@@ -101,7 +102,7 @@ function MyReviews() {
                                             New Rating:
                                         </label>
                                     </div>
-                                    <div class="relative z-0 col-span-2">
+                                    <div className="relative z-0 col-span-2">
                                         <textarea 
                                             rows="2" 
                                             className="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
