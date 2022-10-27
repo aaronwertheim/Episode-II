@@ -53,7 +53,7 @@ function MovieCatalog({ watchlistSubmit }) {
                                 </button>
                                 : 
                                 <button 
-                                    className="hover:opacity-50 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase w-full p-1 rounded-b-md" 
+                                    className="hover:opacity-50 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase w-full p-1 rounded-b-md " 
                                     onClick={() => alert("Please log in to review")}>
                                     Write Review
                                 </button>}
