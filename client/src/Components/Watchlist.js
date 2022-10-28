@@ -29,7 +29,7 @@ function Watchlist (){
                     <Link to={`/movie-details/${watchlistMovie.movie.id}`}>
                         <img className="h-5/6 border-2 border-black rounded-t-sm w-11/12" src={watchlistMovie.movie.image} alt="" />
                     </Link>
-                    <button className="bg-gradient-to-b from-gray-700 to-gray-900 hover:opacity-50 text-white uppercase w-11/12 px-1 rounded-b-md" onClick={() => watchlistRemove(watchlistMovie.id) }>Remove</button>
+                    <button className="bg-gradient-to-b from-gray-700 to-gray-900 hover:text-red-400 text-white uppercase w-11/12 px-1 rounded-b-md" onClick={() => watchlistRemove(watchlistMovie.id) }>Remove</button>
                 </div>
             ))}
         </div>
