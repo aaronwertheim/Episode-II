@@ -16,10 +16,10 @@ function Welcome() {
                 <div class="md:5/12 lg:w-5/12">
                     <img src={ randomMovieImage } alt="" loading="lazy" className="border-4 border-white rounded-sm" />
                 </div>
-                <div class="md:7/12 lg:w-6/12 p-6 rounded-sm shadow-xl">
-                    <h2 class="text-2xl text-gray-900 font-bold md:text-4xl">Welcome to Episode II</h2>
-                    <p class="mt-6 text-gray-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum omnis voluptatem accusantium nemo perspiciatis delectus atque autem! Voluptatum tenetur beatae unde aperiam, repellat expedita consequatur! Officiis id consequatur atque doloremque!</p>
-                    <p class="mt-4 text-gray-600"> Nobis minus voluptatibus pariatur dignissimos libero quaerat iure expedita at? Asperiores nemo possimus nesciunt dicta veniam aspernatur quam mollitia.</p>
+                <div class="md:7/12 lg:w-6/12 p-6 rounded-sm shadow-xl font-oswald">
+                    <h2 class="text-5xl text-gray-900 font-bold ">Welcome to Episode II</h2>
+                    <p class="mt-6 text-gray-600 text-lg">Feel free to explore our database of films, and read reviews from some of our members.</p>
+                    <p class="mt-4 text-gray-600 text-lg"> Want to get in on the fun? Sign up for free today to write your own review, or create a personalized watchlist! Dont forget to show your support, and leave a like for other reviews from the Episode II community. </p>
                 </div>
             </div>
         </div>

@@ -5,7 +5,8 @@ import { UsersContext } from "../Contexts/UsersContext";
 
 function Watchlist (){
     const [watchlistMovies, setWatchlistMovies] = useState([]);
-    const { user } = useContext(UsersContext)
+    const { user } = useContext(UsersContext);
+    const [showButton, setShowButton] = useState([]);
 
     useEffect(() => {
         fetch("/watchlist_movies")
@@ -20,19 +21,31 @@ function Watchlist (){
     }
 
     return(
-        <div className="h-screen overflow-auto no-scrollbar bg-yellow-400">
-             <h1 className="font-oswald text-center text-5xl uppercase underline pt-5 pb-2">{user.username}'s Watchlist</h1>
-        <div className="grid grid-cols-2 lg:grid-cols-6 justify-items-center pt-5">
-           
-            {watchlistMovies.map((watchlistMovie, index) => (
-               <div className="w-5/6" key={index}>
+        <div className="h-screen overflow-auto no-scrollbar bg-yellow-400 font-oswald">
+             <h1 className=" text-center text-5xl uppercase underline pt-5 pb-2">{user.username}'s Watchlist</h1>
+            <div className="grid sm:grid-cols-3 lg:grid-cols-6 justify-items-center pt-5">
+                {watchlistMovies.map((watchlistMovie, index) => (
+                <div className=" h-96" key={index}>
                     <Link to={`/movie-details/${watchlistMovie.movie.id}`}>
-                        <img className="h-5/6 border-2 border-black rounded-t-sm w-11/12" src={watchlistMovie.movie.image} alt="" />
+                        <img 
+                            onMouseEnter={() => setShowButton(watchlistMovie)} 
+                            className="h-5/6 border-4 border-black rounded-lg w-11/12" 
+                            src={watchlistMovie.movie.image} 
+                            alt="" 
+                        />
                     </Link>
-                    <button className="bg-gradient-to-b from-gray-700 to-gray-900 hover:text-red-400 text-white uppercase w-11/12 px-1 rounded-b-md" onClick={() => watchlistRemove(watchlistMovie.id) }>Remove</button>
+                    <div className="-mt-6 ">
+                        {showButton === watchlistMovie ?
+                            <button 
+                                className="bg-gradient-to-b from-gray-700 to-gray-900 hover:text-red-400 text-white uppercase w-11/12 px-1 rounded-b-lg" 
+                                onClick={() => watchlistRemove(watchlistMovie.id) }>
+                                Remove
+                            </button> : <></>
+                        }
+                    </div>
                 </div>
-            ))}
-        </div>
+                ))}
+            </div>
         </div>
     )
 }

@@ -80,7 +80,7 @@ function SignUpForm( ) {
             autoComplete="current-password"
           />
           </div>
-          <button className="bg-gradient-to-b from-gray-700 to-gray-900 font-medium p-2 md:p-4 text-white uppercase w-full" type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
+          <button className="bg-gradient-to-b from-gray-700 to-gray-900 font-medium p-2 md:p-4 text-white uppercase w-full hover:text-blue-500" type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
           {errors.map((err) => (
             <div key={err}>{err}</div>
           ))}
