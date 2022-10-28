@@ -5,15 +5,15 @@ import { UsersContext } from "../Contexts/UsersContext";
 
 function MovieCatalog({ watchlistSubmit }) {
 
+    const { user } = useContext(UsersContext);
     const { movies } = useContext(MoviesContext);
     const [searchParams, setSearchParams] = useState("");
-    const { user } = useContext(UsersContext);
-
+    const [showButtons, setShowButtons] = useState([]);
     const moviesAlphabetical = movies.sort((a, b) => a.id - b.id).reverse();
     
     return (
-        <div className="h-screen overflow-auto no-scrollbar">
-            <div className="flex items-center justify-center pt-3 text-lg bg-yellow-400">
+        <div className="h-screen overflow-auto no-scrollbar font-oswald">
+            <div className="flex items-center justify-center pt-3 text-lg  bg-yellow-400">
                 <div className="bg-gray-200 h-14 pl-3 ml-4">
                     <svg className=" mt-4 w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -34,30 +34,37 @@ function MovieCatalog({ watchlistSubmit }) {
                 <div className=" w-11/12 my-6 grid" key={index}>
                     <div>
                         <Link to={`/movie-details/${movie.id}`}>
-                            <img className="h-full border-2 border-black rounded-t-sm" src={movie.image} alt="" />
+                            <img 
+                                onMouseEnter={() => setShowButtons(movie)} 
+                                className="h-full border-4 border-black rounded-lg" 
+                                src={movie.image} 
+                                alt="" 
+                            />
                         </Link>
-                        <div className="-mt-10">
+                       { showButtons === movie ? <div className="-mt-16">
                             <button 
                                 className="hover:text-blue-500 bg-gradient-to-b from-gray-700 to-gray-900 text-white font-semibold uppercase w-full p-1" 
                                 onClick={(e) => {
+                                    if (user) {
                                     watchlistSubmit(movie.id)
-                                    e.target.textContent = "On Watchlist"
+                                    e.target.textContent = "On Watchlist"} 
+                                    else alert("Please log in")
                                 }}>
                                 {user?.watchlist_movies.map(m => m.movie_id).includes(movie.id) ? 
                                 "On Watchlist" :
                                 "Add to Watchlist"}
                             </button>
                             {user ? 
-                            <button className="hover:text-blue-500 bg-gradient-to-b from-gray-700 to-gray-900 text-white font-semibold uppercase w-full p-1 rounded-b-md">
+                            <button className="hover:text-blue-500 bg-gradient-to-b from-gray-700 to-gray-900 text-white font-semibold uppercase w-full p-1 rounded-b-lg">
                                 <Link to={`/review-form/${movie.id}`}>Write Review</Link>
                             </button>
                                 : 
                             <button 
-                                className="hover:text-blue-500 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase font-semibold w-full p-1 rounded-b-md " 
+                                className="hover:text-blue-500 bg-gradient-to-b from-gray-700 to-gray-900 text-white uppercase font-semibold w-full p-1 rounded-b-lg " 
                                 onClick={() => alert("Please log in to review")}>
                                 Write Review
                             </button>}
-                        </div>
+                        </div> : <></>}
                     </div>   
                 </div> : <></>
                 ))} 

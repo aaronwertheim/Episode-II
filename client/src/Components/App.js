@@ -34,7 +34,6 @@ function App() {
   },[])
 
   function watchlistSubmit(id){
-    if (!user) return alert("Please Log in to add to watchlist");
     fetch("/watchlist_movies", {
       method: "POST",
       headers: {
