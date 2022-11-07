@@ -12,7 +12,7 @@ function MyReviews() {
     useEffect(() => {
         fetch('/user-reviews')
         .then(r => r.json())
-        .then(reviewData => setReviews(reviewData.filter(review => review.user_id === user.id)));
+        .then(reviewData => setReviews(reviewData));
     },[])
 
     function handleUpdate(review){
