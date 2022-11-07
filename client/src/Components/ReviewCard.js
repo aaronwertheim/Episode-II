@@ -10,7 +10,7 @@ function ReviewCard({ review }) {
         fetch('/votes')
         .then(r => r.json())
         .then(voteData => setVotes(voteData.filter(vote => vote.review_id === review.id).length));
-    },[])
+    },[review.id])
     
     function likeReview(rev) {
         if(!user) return alert("Only registered users can upvote");
